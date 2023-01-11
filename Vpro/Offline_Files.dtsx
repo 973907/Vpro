@@ -1,0 +1,2194 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/12/2017 7:07:46 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="W10BQXTFD2"
+  DTS:CreatorName="ASIA-PACIFIC\nikhil_k1"
+  DTS:DTSID="{CF50120B-4CA2-4EDD-A9BA-6A622DB76159}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Offline_Files"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{131E46D5-1FD0-4D52-A0B0-5BE654E021ED}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BU_CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{0CCF1664-430C-4B9D-9B29-796292068EAF}"
+      DTS:ObjectName="BU_CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Blrnx33fs02.BLR.AMER.DELL.COM\amer_cpu_analy$\5.ETL Solutions\25.Software_Royalty\2.Offline_files\vPRO_BUID_Mapping.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="business_unit"
+              DTS:DTSID="{CAE98DE1-FFA2-4E0F-8B4B-F59C7A70D768}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BUID"
+              DTS:DTSID="{89C05FE3-9C2E-410D-8769-FD4DFC2B87B1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="REGION"
+              DTS:DTSID="{04166650-B271-4693-A26B-6BA61620D7C6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COUNTRY"
+              DTS:DTSID="{2E83C810-8A71-4681-9350-3ACAD96184E7}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LOB_CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{AF837170-E715-448B-BC8F-956F5803BFD1}"
+      DTS:ObjectName="LOB_CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Blrnx33fs02.BLR.AMER.DELL.COM\amer_cpu_analy$\5.ETL Solutions\25.Software_Royalty\2.Offline_files\vPRO_LOB_Mapping.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PART"
+              DTS:DTSID="{6CBA912B-949D-4102-89B1-BE892899D528}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FAMILY"
+              DTS:DTSID="{2419AD37-AFDB-46C9-AC0A-CD6514A8BFF2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOB_DESC"
+              DTS:DTSID="{9D175302-ED98-42A1-8C27-18E8777430DA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CHIPSET"
+              DTS:DTSID="{F59A3D76-8CE7-477A-BB55-80F6987C0780}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PART_CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{70C7164B-D50A-4468-BE08-79D9D0F30B3A}"
+      DTS:ObjectName="PART_CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Blrnx33fs02.BLR.AMER.DELL.COM\amer_cpu_analy$\5.ETL Solutions\25.Software_Royalty\2.Offline_files\Vpro_Royalty_Parts_List.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VPRO_PART"
+              DTS:DTSID="{29AC9DAD-ED23-4362-A14D-B82F0DF88F45}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RATE"
+              DTS:DTSID="{A7252201-3006-438E-9E70-FD56C407B715}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WWP Sales]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AECBEBAF-9AB8-4729-97A8-69BBFF0E389E}"
+      DTS:ObjectName="WWP Sales">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::IRIS_Sales]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=harpwpc1db01.aus.amer.dell.com;Initial Catalog=WWP_Sales;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A9177DCF-8DB9-4C58-80B1-C6B0D45149FF}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\LOB"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{00705062-3C99-4C8F-8ADF-EFCED858F988}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOB"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\LOB\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input].Columns[PART]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PART"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[PART]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input].Columns[FAMILY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FAMILY"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[FAMILY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input].Columns[LOB_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LOB_DESC"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[LOB_DESC]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input].Columns[CHIPSET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CHIPSET"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[CHIPSET]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PART]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PART]"
+                          name="Copy of PART"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[PART]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FAMILY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FAMILY]"
+                          name="Copy of FAMILY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[FAMILY]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LOB_DESC]"
+                          name="Copy of LOB_DESC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[LOB_DESC]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CHIPSET]"
+                          name="Copy of CHIPSET"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[CHIPSET]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOB\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOB\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LOB_CSV]"
+                      connectionManagerRefId="Package.ConnectionManagers[LOB_CSV]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[PART]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PART]"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[PART]"
+                          name="PART"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[FAMILY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FAMILY]"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[FAMILY]"
+                          name="FAMILY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LOB_DESC]"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[LOB_DESC]"
+                          name="LOB_DESC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[CHIPSET]"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].Columns[CHIPSET]"
+                          name="CHIPSET"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PART]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PART" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FAMILY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FAMILY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LOB_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CHIPSET" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOB\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SALES].[CPU_SW_ROYALTY.LOB]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOB\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PART]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="500"
+                          cachedName="Copy of PART"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PART]"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PART]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of FAMILY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="500"
+                          cachedName="Copy of FAMILY"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMILY]"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FAMILY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of LOB_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="Copy of LOB_DESC"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOB_DESC]"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LOB_DESC]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of CHIPSET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Copy of CHIPSET"
+                          externalMetadataColumnId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHIPSET]"
+                          lineageId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CHIPSET]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PART]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="PART" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMILY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="FAMILY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="LOB_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="CHIPSET" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOB\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\LOB.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container\LOB\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container\LOB\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container\LOB.Paths[Flat File Source Output]"
+                  endId="Package\Sequence Container\LOB\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Sequence Container\LOB\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\TRUNCATE TABLE LOB"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{236E00F9-3A7C-4A43-B907-9FA581672FA3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE LOB"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AECBEBAF-9AB8-4729-97A8-69BBFF0E389E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [SALES].[CPU_SW_ROYALTY.LOB]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BD14A24B-2B6A-48CF-971E-5A9170A5DB8F}"
+          DTS:From="Package\Sequence Container\TRUNCATE TABLE LOB"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\LOB" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{24CF356A-81F3-4B3A-9342-14459F263372}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\BU"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E5C2FA0E-1335-4050-9730-8077D091C341}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="BU"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 1\BU\BU"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="BU"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SALES].[CPU_SW_ROYALTY.BU]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\BU\BU.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].Columns[Copy of business_unit]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of business_unit"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[business_unit]"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of business_unit]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].Columns[Copy of BUID]"
+                          cachedDataType="r8"
+                          cachedName="Copy of BUID"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[BUID]"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of BUID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].Columns[Copy of REGION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of REGION"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REGION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].Columns[Copy of COUNTRY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of COUNTRY"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of COUNTRY]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="business_unit" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[BUID]"
+                          dataType="r8"
+                          name="BUID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="REGION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="COUNTRY" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\BU\BU.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\BU.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\BU.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\BU.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\BU\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input].Columns[business_unit]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="business_unit"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[business_unit]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input].Columns[BUID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BUID"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[BUID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input].Columns[REGION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="REGION"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[REGION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input].Columns[COUNTRY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="COUNTRY"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[COUNTRY]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of business_unit]"
+                          name="Copy of business_unit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[business_unit]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of BUID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of BUID]"
+                          name="Copy of BUID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[BUID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REGION]"
+                          name="Copy of REGION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[REGION]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of COUNTRY]"
+                          name="Copy of COUNTRY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[COUNTRY]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\BU\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\BU\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BU_CSV]"
+                      connectionManagerRefId="Package.ConnectionManagers[BU_CSV]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[business_unit]"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[business_unit]"
+                          name="business_unit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[BUID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BUID]"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[BUID]"
+                          name="BUID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[REGION]"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[REGION]"
+                          name="REGION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[COUNTRY]"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].Columns[COUNTRY]"
+                          name="COUNTRY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="business_unit" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BUID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BUID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="REGION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="COUNTRY" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 1\BU.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container 1\BU\BU.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container 1\BU\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container 1\BU.Paths[Flat File Source Output]"
+                  endId="Package\Sequence Container 1\BU\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Sequence Container 1\BU\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\TRUNCATE TABLE BU"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DD96B4FF-EA67-4080-8445-423106302C70}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE BU"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AECBEBAF-9AB8-4729-97A8-69BBFF0E389E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE  [SALES].[CPU_SW_ROYALTY.BU]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F9DE3C0E-4F3F-43E8-B6A3-8E50F9133FC6}"
+          DTS:From="Package\Sequence Container 1\TRUNCATE TABLE BU"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container 1\BU" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 2"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0112ED80-CC58-431E-B560-8803CB97BCDB}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\TRUNCATE TABLE vPRO_Parts_Cost"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4AED1D30-1312-4420-8C24-EDD9552A1FB6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE vPRO_Parts_Cost"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AECBEBAF-9AB8-4729-97A8-69BBFF0E389E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE   [SALES].[CPU_SW_ROYALTY.VPRO_PARTS_COST]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\vPRO_Parts_Cost"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{710BFB2B-CC26-4705-BB1D-523AE89C8B86}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="vPRO_Parts_Cost"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input].Columns[VPRO_PART]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="VPRO_PART"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[VPRO_PART]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input].Columns[RATE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RATE"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[RATE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of VPRO_PART]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of VPRO_PART]"
+                          name="Copy of VPRO_PART"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[VPRO_PART]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RATE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RATE]"
+                          name="Copy of RATE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[RATE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[PART_CSV]"
+                      connectionManagerRefId="Package.ConnectionManagers[PART_CSV]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[VPRO_PART]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[VPRO_PART]"
+                          length="50"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[VPRO_PART]"
+                          name="VPRO_PART"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[RATE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RATE]"
+                          length="50"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[RATE]"
+                          name="RATE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[VPRO_PART]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="VPRO_PART" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RATE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="vPRO_Parts_Cost"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SALES].[CPU_SW_ROYALTY.VPRO_PARTS_COST]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].Columns[RATE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RATE"
+                          externalMetadataColumnId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].ExternalColumns[RATE]"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output].Columns[RATE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].Columns[Copy of VPRO_PART]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of VPRO_PART"
+                          externalMetadataColumnId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].ExternalColumns[PART]"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of VPRO_PART]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].ExternalColumns[PART]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="PART" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].ExternalColumns[RATE]"
+                          dataType="r8"
+                          name="RATE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input].ExternalColumns[MONTH]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="MONTH" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 2\vPRO_Parts_Cost.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container 2\vPRO_Parts_Cost.Paths[Flat File Source Output]"
+                  endId="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 2.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{855E42F8-A8EA-4B94-972F-1FA22A9C2B62}"
+          DTS:From="Package\Sequence Container 2\TRUNCATE TABLE vPRO_Parts_Cost"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container 2\vPRO_Parts_Cost" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\LOB"
+          TopLeft="26.9811320754717,111.754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\TRUNCATE TABLE LOB"
+          TopLeft="21.9622641509434,28.8867924528302" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="89.8490566037736,72.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.01886792452829,38.9433962264151"
+              Start="0,0"
+              End="5.01886792452829,31.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452829,19.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452829,31.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="177.6,176"
+          Size="177.6,220"
+          Id="Package\Sequence Container"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 1\BU"
+          TopLeft="20.9811320754717,109.754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 1\TRUNCATE TABLE BU"
+          TopLeft="15.9622641509434,34.8867924528302" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          TopLeft="83.8490566037736,78.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.01886792452831,30.9433962264151"
+              Start="0,0"
+              End="5.01886792452831,23.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,15.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,23.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,176"
+          Size="164,220"
+          Id="Package\Sequence Container 1"
+          TopLeft="227.160377358491,6.5188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\TRUNCATE TABLE vPRO_Parts_Cost"
+          TopLeft="12.9811320754717,22.8867924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost"
+          TopLeft="18,105.754716981132" />
+        <EdgeLayout
+          Id="Package\Sequence Container 2.PrecedenceConstraints[Constraint]"
+          TopLeft="80.8679245283018,66.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.01886792452831,38.9433962264151"
+              Start="0,0"
+              End="5.01886792452831,31.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,19.4716981132076" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,31.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,176"
+          Size="164,220"
+          Id="Package\Sequence Container 2"
+          TopLeft="441.801886792453,13.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[WWP Sales]">
+    <DataSourceID>WWP Sales</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Sequence Container\LOB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\LOB\Data Conversion"
+          TopLeft="45.4245283018868,94.3679245283019" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\LOB\OLE DB Destination"
+          TopLeft="88.3679245283019,187.235849056604" />
+        <EdgeLayout
+          Id="Package\Sequence Container\LOB.Paths[Data Conversion Output]"
+          TopLeft="113.311320754717,138.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.9433962264151,48.9433962264151"
+              Start="0,0"
+              End="42.9433962264151,41.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4528301886793" />
+                  <mssgle:LineSegment
+                    End="42.9433962264151,24.4528301886793" />
+                  <mssgle:LineSegment
+                    End="42.9433962264151,41.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Sequence Container\LOB\Flat File Source"
+          TopLeft="182.285717390022,20.8000002917121" />
+        <EdgeLayout
+          Id="Package\Sequence Container\LOB.Paths[Flat File Source Output]"
+          TopLeft="257.485717390022,62.4000002917121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-144.061189088135,31.9679242365898"
+              Start="0,0"
+              End="-144.061189088135,24.4679242365898">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.9839621182949" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.9839621182949"
+                    Point2="0,15.9839621182949"
+                    Point3="-4,15.9839621182949" />
+                  <mssgle:LineSegment
+                    End="-140.061189088135,15.9839621182949" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-140.061189088135,15.9839621182949"
+                    Point2="-144.061189088135,15.9839621182949"
+                    Point3="-144.061189088135,19.9839621182949" />
+                  <mssgle:LineSegment
+                    End="-144.061189088135,24.4679242365898" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\LOB\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Sequence Container 1\BU">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 1\BU\Data Conversion"
+          TopLeft="54.4056603773585,82.4056603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 1\BU\BU"
+          TopLeft="137.27358490566,170.254716981132" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1\BU.Paths[Data Conversion Output]"
+          TopLeft="122.292452830189,126.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.8679245283018,43.9245283018868"
+              Start="0,0"
+              End="82.8679245283018,36.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="82.8679245283018,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="82.8679245283018,36.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Sequence Container 1\BU\Flat File Source"
+          TopLeft="188,17.6" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1\BU.Paths[Flat File Source Output]"
+          TopLeft="263.2,59.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-140.794339622641,23.2056603773585"
+              Start="0,0"
+              End="-140.794339622641,15.7056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.60283018867925" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.60283018867925"
+                    Point2="0,11.6028301886792"
+                    Point3="-4,11.6028301886792" />
+                  <mssgle:LineSegment
+                    End="-136.794339622641,11.6028301886792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-136.794339622641,11.6028301886792"
+                    Point2="-140.794339622641,11.6028301886792"
+                    Point3="-140.794339622641,15.6028301886792" />
+                  <mssgle:LineSegment
+                    End="-140.794339622641,15.7056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 1\BU\BU">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Sequence Container 2\vPRO_Parts_Cost">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost"
+          TopLeft="137.311320754717,184.198113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost\Data Conversion"
+          TopLeft="60.4056603773585,92.3301886792453" />
+        <EdgeLayout
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost.Paths[Data Conversion Output]"
+          TopLeft="128.405660377359,136.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="88.9056603773585,47.8679245283019"
+              Start="0,0"
+              End="88.9056603773585,40.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9339622641509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.9339622641509"
+                    Point2="0,23.9339622641509"
+                    Point3="4,23.9339622641509" />
+                  <mssgle:LineSegment
+                    End="84.9056603773585,23.9339622641509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="84.9056603773585,23.9339622641509"
+                    Point2="88.9056603773585,23.9339622641509"
+                    Point3="88.9056603773585,27.9339622641509" />
+                  <mssgle:LineSegment
+                    End="88.9056603773585,40.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.4528301886793,28.9339622641509,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost\Flat File Source"
+          TopLeft="217.6,14.4" />
+        <EdgeLayout
+          Id="Package\Sequence Container 2\vPRO_Parts_Cost.Paths[Flat File Source Output]"
+          TopLeft="292.8,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-164.394339622641,36.3301886792453"
+              Start="0,0"
+              End="-164.394339622641,28.8301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1650943396226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1650943396226"
+                    Point2="0,18.1650943396226"
+                    Point3="-4,18.1650943396226" />
+                  <mssgle:LineSegment
+                    End="-160.394339622641,18.1650943396226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-160.394339622641,18.1650943396226"
+                    Point2="-164.394339622641,18.1650943396226"
+                    Point3="-164.394339622641,22.1650943396226" />
+                  <mssgle:LineSegment
+                    End="-164.394339622641,28.8301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-90.1971698113207,23.1650943396226,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 2\vPRO_Parts_Cost\vPRO_Parts_Cost">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

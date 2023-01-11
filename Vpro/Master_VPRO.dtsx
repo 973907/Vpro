@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/28/2018 4:48:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="W10BQXTFD2"
+  DTS:CreatorName="ASIA-PACIFIC\Nikhil_K1"
+  DTS:DTSID="{B123257B-0A13-43F5-A052-D5E242DA2DC0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Master_VPRO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{FEA47C13-C54D-4FCF-B73B-16F40046A68A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ER_Vpro_Orders_David.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{34096D34-AA00-4728-B9CE-F7B8BD0FBEBC}"
+      DTS:ObjectName="ER_Vpro_Orders_David.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="\\blrnx33fs02.blr.amer.dell.com\amer_cpu_analy$\Software_Royalty\vPRO - IRIS\vPRO\vPRO\ER_Vpro_Orders_David.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PreStg_VPRO_Orders_David.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{7A4A825A-23A2-4E75-AC98-DE368B75A9A6}"
+      DTS:ObjectName="PreStg_VPRO_Orders_David.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="\\blrnx33fs02.blr.amer.dell.com\amer_cpu_analy$\Software_Royalty\vPRO - IRIS\vPRO\vPRO\PreStg_VPRO_Orders_David.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Stg_VPRO_Orders_David.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{D8953738-2CAA-4B2A-B812-7C97D1CEA276}"
+      DTS:ObjectName="Stg_VPRO_Orders_David.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="\\blrnx33fs02.blr.amer.dell.com\amer_cpu_analy$\Software_Royalty\vPRO - IRIS\vPRO\vPRO\Stg_VPRO_Orders_David.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ER_Vpro_Orders_David"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{EDFBA160-8E96-415C-A7DA-C59A51AF0315}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ER_Vpro_Orders_David"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ER_Vpro_Orders_David.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PreStg_VPRO_Orders_David"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{A8D17126-338D-449D-8C2C-5BBDB17309E2}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PreStg_VPRO_Orders_David"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>pre_stg_orders_david.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stg_VPRO_Orders_David"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{1F072DE8-F480-4855-9E08-B589AA9000D1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stg_VPRO_Orders_David"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Stg_VPRO_Orders_David.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F96E46B8-4012-4392-8D6E-5A5DB534D6CE}"
+      DTS:From="Package\PreStg_VPRO_Orders_David"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stg_VPRO_Orders_David" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C67C3B4A-9AEC-4B50-B8E7-9EE5DD55517E}"
+      DTS:From="Package\Stg_VPRO_Orders_David"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ER_Vpro_Orders_David" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,40.6666666666667"
+          Id="Package\ER_Vpro_Orders_David"
+          TopLeft="189.714288945101,262.44706250425" />
+        <NodeLayout
+          Size="191.333333333334,40.6666666666667"
+          Id="Package\PreStg_VPRO_Orders_David"
+          TopLeft="109.714287582709,97.8823543139395" />
+        <NodeLayout
+          Size="196,40.6666666666667"
+          Id="Package\Stg_VPRO_Orders_David"
+          TopLeft="133.714287991426,179.851543158348" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="205.380954249376,138.549020980606">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.3333337420503,41.3025221777417"
+              Start="0,0"
+              End="26.3333337420503,33.8025221777417">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6512610888708" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6512610888708"
+                    Point2="0,20.6512610888708"
+                    Point3="4,20.6512610888708" />
+                  <mssgle:LineSegment
+                    End="22.3333337420503,20.6512610888708" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.3333337420503,20.6512610888708"
+                    Point2="26.3333337420503,20.6512610888708"
+                    Point3="26.3333337420503,24.6512610888708" />
+                  <mssgle:LineSegment
+                    End="26.3333337420503,33.8025221777417" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="231.714287991426,220.518209825014">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.000000953675,41.9288526792355"
+              Start="0,0"
+              End="52.000000953675,34.4288526792355">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9644263396178" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9644263396178"
+                    Point2="0,20.9644263396178"
+                    Point3="4,20.9644263396178" />
+                  <mssgle:LineSegment
+                    End="48.000000953675,20.9644263396178" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.000000953675,20.9644263396178"
+                    Point2="52.000000953675,20.9644263396178"
+                    Point3="52.000000953675,24.9644263396178" />
+                  <mssgle:LineSegment
+                    End="52.000000953675,34.4288526792355" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

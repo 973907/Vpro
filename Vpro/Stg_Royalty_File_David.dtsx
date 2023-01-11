@@ -1,0 +1,2372 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/10/2017 11:28:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="W10BQXTFD2"
+  DTS:CreatorName="ASIA-PACIFIC\nikhil_k1"
+  DTS:DTSID="{E8A7D34A-F7A0-426A-B998-6472A9ED34F9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Stg_Royalty_File_David"
+  DTS:PackageType="5"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{963FBB09-57B3-4466-B854-B1D357C0C252}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WWP COS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4F0CA78D-F310-4B0D-9A82-2C597D0A98E5}"
+      DTS:ObjectName="WWP COS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::IRIS]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=harpwpc1db01.aus.amer.dell.com;Initial Catalog=WWP_COS;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WWP Sales]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{59139F06-9600-4779-9E38-B09FD9AFCA13}"
+      DTS:ObjectName="WWP Sales">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::IRIS_Sales]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=harpwpc1db01.aus.amer.dell.com;Initial Catalog=WWP_Sales;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9D3762EC-B327-45C6-86EC-FE9284BA3193}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Delete Stg_vPRO"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FCA736E8-F3CA-4A95-A42D-8DAC0755BF90}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete Stg_vPRO"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{59139F06-9600-4779-9E38-B09FD9AFCA13}"
+              SQLTask:SqlStatementSource="DELETE FROM  [SALES].[CPU_SW_ROYALTY.STG_VPRO]&#xA;WHERE ACTUAL_PERIOD IN (SELECT DISTINCT ACTUAL_PERIOD FROM [SALES].[CPU_SW_ROYALTY.VPRO_SOURCE] )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Stg_vPRO"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{28D0E27E-ED16-4DB2-AEB5-22C217178B7F}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stg_vPRO"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Stg_vPRO\BU"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="BU"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM   [SALES].[CPU_SW_ROYALTY.BU]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM   [SALES].[CPU_SW_ROYALTY.BU]) [refTable]
+where [refTable].[business_unit] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="business_unit" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BUID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="REGION" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="COUNTRY" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[business_unit]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Stg_vPRO\BU.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input].Columns[business_unit]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="business_unit"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[business_unit]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">business_unit</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[BUID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[BUID]"
+                          name="BUID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">BUID</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[REGION]"
+                          name="REGION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">REGION</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[COUNTRY]"
+                          name="COUNTRY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">COUNTRY</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Fiscsal Date"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CAST([DAY_DT] AS DATE)[DAY_DT]
+      ,[WeekDesc]
+      ,[Fiscal_Month_Name]
+      ,[Fisc_WK]
+      ,[Fisc_Month]
+      ,[FISC_YR]
+      ,[FISC_YR_CD]
+      ,[FISC_QTR_ID]
+      ,[FISC_QTR_CD]
+      ,[QTR_CD]
+      ,[FISC_QTR_NBR]
+      ,[NEXT_YR_FISC_QTR_ID]
+      ,[PRIOR_YR_FISC_QTR_ID]
+      ,[FISC_MTH_ID]
+      ,[FISC_MTH_CD]
+      ,[MTH_CD]
+      ,[FISC_MTH_NBR]
+      ,[FISC_WK_ID]
+      ,[FISC_WK_CD]
+      ,[WK_CD]
+      ,[FISC_WK_NBR]
+      ,[FISC_QTR_WK_NBR]
+      ,[FISC_MTH_WK_NBR]
+      ,[FISC_YR_DAY_NBR]
+      ,[FISC_YR_STRT_FLG]
+      ,[FISC_YR_END_FLG]
+      ,[FISC_QTR_STRT_FLG]
+      ,[FISC_QTR_END_FLG]
+      ,[FISC_MTH_STRT_FLG]
+      ,[FISC_MTH_END_FLG]
+      ,[FISC_WK_STRT_FLG]
+      ,[FISC_WK_END_FLG]
+      ,[WKDAY_FLG]
+      ,[CLDR_MTH_NBR]
+      ,[CLDR_MTH_ABBR]
+      ,[CLDR_MTH_NM]
+      ,[DAY_OF_WK_NBR]
+      ,[DAY_OF_WK_ABBR]
+      ,[DAY_OF_WK_NM]
+      ,[DW_INS_UPD_DTS]
+      ,[FISC_YR_STRT_DT]
+      ,[FISC_YR_END_DT]
+      ,[FISC_QTR_STRT_DT]
+      ,[FISC_QTR_END_DT]
+      ,[FISC_MTH_STRT_DT]
+      ,[FISC_MTH_END_DT]
+      ,[FISC_WK_STRT_DT]
+      ,[FISC_WK_END_DT]
+  FROM [FORECAST].[CPU_FORECAST_ACCURACY.FISCAL_CALENDAR]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT CAST([DAY_DT] AS DATE)[DAY_DT]
+      ,[WeekDesc]
+      ,[Fiscal_Month_Name]
+      ,[Fisc_WK]
+      ,[Fisc_Month]
+      ,[FISC_YR]
+      ,[FISC_YR_CD]
+      ,[FISC_QTR_ID]
+      ,[FISC_QTR_CD]
+      ,[QTR_CD]
+      ,[FISC_QTR_NBR]
+      ,[NEXT_YR_FISC_QTR_ID]
+      ,[PRIOR_YR_FISC_QTR_ID]
+      ,[FISC_MTH_ID]
+      ,[FISC_MTH_CD]
+      ,[MTH_CD]
+      ,[FISC_MTH_NBR]
+      ,[FISC_WK_ID]
+      ,[FISC_WK_CD]
+      ,[WK_CD]
+      ,[FISC_WK_NBR]
+      ,[FISC_QTR_WK_NBR]
+      ,[FISC_MTH_WK_NBR]
+      ,[FISC_YR_DAY_NBR]
+      ,[FISC_YR_STRT_FLG]
+      ,[FISC_YR_END_FLG]
+      ,[FISC_QTR_STRT_FLG]
+      ,[FISC_QTR_END_FLG]
+      ,[FISC_MTH_STRT_FLG]
+      ,[FISC_MTH_END_FLG]
+      ,[FISC_WK_STRT_FLG]
+      ,[FISC_WK_END_FLG]
+      ,[WKDAY_FLG]
+      ,[CLDR_MTH_NBR]
+      ,[CLDR_MTH_ABBR]
+      ,[CLDR_MTH_NM]
+      ,[DAY_OF_WK_NBR]
+      ,[DAY_OF_WK_ABBR]
+      ,[DAY_OF_WK_NM]
+      ,[DW_INS_UPD_DTS]
+      ,[FISC_YR_STRT_DT]
+      ,[FISC_YR_END_DT]
+      ,[FISC_QTR_STRT_DT]
+      ,[FISC_QTR_END_DT]
+      ,[FISC_MTH_STRT_DT]
+      ,[FISC_MTH_END_DT]
+      ,[FISC_WK_STRT_DT]
+      ,[FISC_WK_END_DT]
+  FROM [FORECAST].[CPU_FORECAST_ACCURACY.FISCAL_CALENDAR]) [refTable]
+where [refTable].[DAY_DT] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DAY_DT" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekDesc" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Fiscal_Month_Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Fisc_WK" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Fisc_Month" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_ID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="QTR_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NEXT_YR_FISC_QTR_ID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PRIOR_YR_FISC_QTR_ID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_ID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MTH_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_ID" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WK_CD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_WK_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_WK_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_DAY_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_STRT_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_END_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_STRT_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_END_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_STRT_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_END_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_STRT_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_END_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WKDAY_FLG" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CLDR_MTH_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CLDR_MTH_ABBR" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CLDR_MTH_NM" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DAY_OF_WK_NBR" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DAY_OF_WK_ABBR" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DAY_OF_WK_NM" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DW_INS_UPD_DTS" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_STRT_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_YR_END_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_STRT_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_QTR_END_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_STRT_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_MTH_END_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_STRT_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FISC_WK_END_DT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period_lk]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP COS]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP COS]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input].Columns[actual_period_lk]"
+                          cachedDataType="dbDate"
+                          cachedName="actual_period_lk"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period_lk]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">DAY_DT</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_WK_CD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_WK_CD]"
+                          name="FISC_WK_CD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FISC_WK_CD</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_MTH_CD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_MTH_CD]"
+                          name="FISC_MTH_CD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FISC_MTH_CD</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_QTR_CD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_QTR_CD]"
+                          name="FISC_QTR_CD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FISC_QTR_CD</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_YR_CD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_YR_CD]"
+                          name="FISC_YR_CD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FISC_YR_CD</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Stg_vPRO\LOB"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="LOB"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM  [SALES].[CPU_SW_ROYALTY.LOB]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM  [SALES].[CPU_SW_ROYALTY.LOB]) [refTable]
+where [refTable].[PART] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PART" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FAMILY" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="LOB_DESC" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CHIPSET" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[part]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Stg_vPRO\LOB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input].Columns[part]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="part"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[part]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">PART</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[LOB_DESC]"
+                          name="LOB_DESC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">LOB_DESC</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[FAMILY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[FAMILY]"
+                          name="FAMILY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FAMILY</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[CHIPSET]"
+                          name="CHIPSET"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CHIPSET</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Stg_vPRO\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [calculation_name]
+      ,[reporting_period]
+      ,CAST([actual_period] AS DATE)[actual_period]
+      ,CAST(dateadd(day,14,[actual_period]) AS DATE)[actual_period_lk]
+      ,cast(DATENAME(MONTH,CAST([actual_period] AS DATE)) as varchar(50)) Calender_Month
+      ,cast(DATENAME(YEAR ,CAST([actual_period] AS DATE)) as varchar(50)) Calender_Year
+      ,[Fiscal_Year]
+      ,[part]
+      ,LTRIM(SUBSTRING([part],CHARINDEX('-',PART,1)+1,6) )                     [Part_Number]
+      ,[account]
+      ,[transaction_type]
+      ,[product_line_parent]
+      ,[channel_type]
+      ,[mfg_facility]
+      ,[business_unit]
+      ,[replicator]
+      ,[tier]
+      ,[segment]
+      ,[rate]
+      ,[msrp]
+      ,[discount]
+      ,[from_date]
+      ,[to_date]
+      ,[amount]
+      ,[amount_2]
+      ,[units]
+      ,[units_2]
+      ,[sort_order_nbr]
+  FROM  [SALES].[CPU_SW_ROYALTY.VPRO_SOURCE]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[calculation_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[calculation_name]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[calculation_name]"
+                          name="calculation_name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[reporting_period]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reporting_period]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[reporting_period]"
+                          name="reporting_period"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[actual_period]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period]"
+                          name="actual_period"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fiscal_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fiscal_Year]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fiscal_Year]"
+                          name="Fiscal_Year"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[part]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[part]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[part]"
+                          name="part"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Part_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Part_Number]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Part_Number]"
+                          name="Part_Number"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[account]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[account]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[account]"
+                          name="account"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[transaction_type]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_type]"
+                          name="transaction_type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_line_parent]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[product_line_parent]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_line_parent]"
+                          name="product_line_parent"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[channel_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[channel_type]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[channel_type]"
+                          name="channel_type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[mfg_facility]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[mfg_facility]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[mfg_facility]"
+                          name="mfg_facility"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[business_unit]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[business_unit]"
+                          name="business_unit"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[replicator]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[replicator]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[replicator]"
+                          name="replicator"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[tier]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tier]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[tier]"
+                          name="tier"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[segment]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[segment]"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[segment]"
+                          name="segment"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rate]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate]"
+                          name="rate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[msrp]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[msrp]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[msrp]"
+                          name="msrp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[discount]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[discount]"
+                          name="discount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[from_date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[from_date]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[from_date]"
+                          name="from_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[to_date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[to_date]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[to_date]"
+                          name="to_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amount]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount]"
+                          name="amount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount_2]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amount_2]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount_2]"
+                          name="amount_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]"
+                          name="units"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units_2]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units_2]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units_2]"
+                          name="units_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[sort_order_nbr]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sort_order_nbr]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[sort_order_nbr]"
+                          name="sort_order_nbr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Month]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Calender_Month]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Month]"
+                          name="Calender_Month"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Calender_Year]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Year]"
+                          name="Calender_Year"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period_lk]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[actual_period_lk]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period_lk]"
+                          name="actual_period_lk"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[calculation_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="calculation_name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reporting_period]"
+                          dataType="dbTimeStamp"
+                          name="reporting_period" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[actual_period]"
+                          dataType="dbDate"
+                          name="actual_period" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fiscal_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Fiscal_Year" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[part]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="part" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Part_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Part_Number" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[account]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="account" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[transaction_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="transaction_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[product_line_parent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="product_line_parent" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[channel_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="channel_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[mfg_facility]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="mfg_facility" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="business_unit" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[replicator]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="replicator" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tier]"
+                          dataType="r8"
+                          name="tier" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[segment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="segment" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rate]"
+                          dataType="r8"
+                          name="rate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[msrp]"
+                          dataType="r8"
+                          name="msrp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                          dataType="r8"
+                          name="discount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[from_date]"
+                          dataType="dbTimeStamp"
+                          name="from_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[to_date]"
+                          dataType="dbTimeStamp"
+                          name="to_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amount]"
+                          dataType="r8"
+                          name="amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amount_2]"
+                          dataType="r8"
+                          name="amount_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units]"
+                          dataType="r8"
+                          name="units" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units_2]"
+                          dataType="r8"
+                          name="units_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sort_order_nbr]"
+                          dataType="r8"
+                          name="sort_order_nbr" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Calender_Month]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Calender_Month" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Calender_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Calender_Year" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[actual_period_lk]"
+                          dataType="dbDate"
+                          name="actual_period_lk" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[calculation_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[calculation_name]"
+                          name="calculation_name" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reporting_period]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reporting_period]"
+                          name="reporting_period" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[actual_period]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[actual_period]"
+                          name="actual_period" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[actual_period_lk]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[actual_period_lk]"
+                          name="actual_period_lk" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Calender_Month]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Calender_Month]"
+                          name="Calender_Month" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Calender_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Calender_Year]"
+                          name="Calender_Year" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fiscal_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fiscal_Year]"
+                          name="Fiscal_Year" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[part]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[part]"
+                          name="part" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Part_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Part_Number]"
+                          name="Part_Number" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[account]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[account]"
+                          name="account" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[transaction_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[transaction_type]"
+                          name="transaction_type" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[product_line_parent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[product_line_parent]"
+                          name="product_line_parent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[channel_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[channel_type]"
+                          name="channel_type" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[mfg_facility]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[mfg_facility]"
+                          name="mfg_facility" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[business_unit]"
+                          name="business_unit" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[replicator]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[replicator]"
+                          name="replicator" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tier]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tier]"
+                          name="tier" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[segment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[segment]"
+                          name="segment" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rate]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rate]"
+                          name="rate" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[msrp]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[msrp]"
+                          name="msrp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[discount]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[discount]"
+                          name="discount" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[from_date]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[from_date]"
+                          name="from_date" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[to_date]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[to_date]"
+                          name="to_date" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amount]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amount]"
+                          name="amount" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amount_2]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amount_2]"
+                          name="amount_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units]"
+                          name="units" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units_2]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units_2]"
+                          name="units_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sort_order_nbr]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sort_order_nbr]"
+                          name="sort_order_nbr" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Stg_vPRO"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SALES].[CPU_SW_ROYALTY.STG_VPRO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WWP Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[WWP Sales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[calculation_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="calculation_name"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[calculation_name]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[calculation_name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[reporting_period]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="reporting_period"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[reporting_period]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[reporting_period]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[actual_period]"
+                          cachedDataType="dbDate"
+                          cachedName="actual_period"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[actual_period]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[actual_period]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[Fiscal_Year]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Fiscal_Year"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_Year]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fiscal_Year]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[part]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="part"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[part]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[part]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[Part_Number]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Part_Number"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Part_Number]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Part_Number]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[account]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="account"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[account]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[account]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[transaction_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="transaction_type"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[transaction_type]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_type]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[product_line_parent]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="product_line_parent"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[product_line_parent]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_line_parent]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[channel_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="channel_type"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[channel_type]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[channel_type]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[mfg_facility]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="mfg_facility"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[mfg_facility]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[mfg_facility]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[business_unit]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="business_unit"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[business_unit]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[business_unit]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[replicator]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="replicator"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[replicator]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[replicator]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[tier]"
+                          cachedDataType="r8"
+                          cachedName="tier"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[tier]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[tier]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[segment]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="segment"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[segment]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[segment]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[rate]"
+                          cachedDataType="r8"
+                          cachedName="rate"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[rate]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[msrp]"
+                          cachedDataType="r8"
+                          cachedName="msrp"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[msrp]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[msrp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[discount]"
+                          cachedDataType="r8"
+                          cachedName="discount"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[discount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[from_date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="from_date"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[from_date]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[from_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[to_date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="to_date"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[to_date]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[to_date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[amount]"
+                          cachedDataType="r8"
+                          cachedName="amount"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[amount_2]"
+                          cachedDataType="r8"
+                          cachedName="amount_2"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[amount_2]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[amount_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[units]"
+                          cachedDataType="r8"
+                          cachedName="units"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[units]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[units_2]"
+                          cachedDataType="r8"
+                          cachedName="units_2"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[units_2]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[units_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[sort_order_nbr]"
+                          cachedDataType="r8"
+                          cachedName="sort_order_nbr"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[sort_order_nbr]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[sort_order_nbr]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[FISC_WK_CD]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FISC_WK_CD"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_WK_CD]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_WK_CD]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[FISC_MTH_CD]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FISC_MTH_CD"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_MTH_CD]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_MTH_CD]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[FISC_QTR_CD]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FISC_QTR_CD"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_QTR_CD]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_QTR_CD]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[FISC_YR_CD]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FISC_YR_CD"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_YR_CD]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output].Columns[FISC_YR_CD]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[LOB_DESC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="LOB_DESC"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[LOB_DESC]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[LOB_DESC]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[BUID]"
+                          cachedDataType="r8"
+                          cachedName="BUID"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[BUID]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[BUID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[REGION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="REGION"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[REGION]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[COUNTRY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="COUNTRY"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output].Columns[COUNTRY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[FAMILY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="FAMILY"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Family]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[FAMILY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[CHIPSET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CHIPSET"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[CHIPSET]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output].Columns[CHIPSET]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[Calender_Year]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Calender_Year"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Calender_Year]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Year]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].Columns[Calender_Month]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Calender_Month"
+                          externalMetadataColumnId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Calender_Month]"
+                          lineageId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[Calender_Month]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[calculation_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="calculation_name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[reporting_period]"
+                          dataType="dbTimeStamp"
+                          name="reporting_period" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[actual_period]"
+                          dataType="dbTimeStamp"
+                          name="actual_period" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Fiscal_Year" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[part]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="part" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Part_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Part_Number" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[account]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="account" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[transaction_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="transaction_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[product_line_parent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="product_line_parent" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[channel_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="channel_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[mfg_facility]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="mfg_facility" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[business_unit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="business_unit" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[replicator]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="replicator" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[tier]"
+                          dataType="r8"
+                          name="tier" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[segment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="segment" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[rate]"
+                          dataType="r8"
+                          name="rate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[msrp]"
+                          dataType="r8"
+                          name="msrp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                          dataType="r8"
+                          name="discount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[from_date]"
+                          dataType="dbTimeStamp"
+                          name="from_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[to_date]"
+                          dataType="dbTimeStamp"
+                          name="to_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                          dataType="r8"
+                          name="amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[amount_2]"
+                          dataType="r8"
+                          name="amount_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[units]"
+                          dataType="r8"
+                          name="units" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[units_2]"
+                          dataType="r8"
+                          name="units_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[sort_order_nbr]"
+                          dataType="r8"
+                          name="sort_order_nbr" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_WK_CD]"
+                          dataType="wstr"
+                          length="255"
+                          name="FISC_WK_CD" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_MTH_CD]"
+                          dataType="wstr"
+                          length="255"
+                          name="FISC_MTH_CD" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_QTR_CD]"
+                          dataType="wstr"
+                          length="255"
+                          name="FISC_QTR_CD" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[FISC_YR_CD]"
+                          dataType="wstr"
+                          length="255"
+                          name="FISC_YR_CD" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[LOB_DESC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="LOB_DESC" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[BUID]"
+                          dataType="r8"
+                          name="BUID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="REGION" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="COUNTRY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Family]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Family" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[CHIPSET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="CHIPSET" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Calender_Month]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Calender_Month" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input].ExternalColumns[Calender_Year]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Calender_Year" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output]"
+                  endId="Package\Sequence Container\Stg_vPRO\BU.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Sequence Container\Stg_vPRO\LOB.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output1]"
+                  endId="Package\Sequence Container\Stg_vPRO\Stg_vPRO.Inputs[OLE DB Destination Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Sequence Container\Stg_vPRO\BU.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output2]"
+                  endId="Package\Sequence Container\Stg_vPRO\LOB.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Sequence Container\Stg_vPRO.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Stg_vPRO\Fiscsal Date.Inputs[Lookup Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Stg_vPRO\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{89B0E367-669E-461D-B3F5-5AE07F95188A}"
+          DTS:From="Package\Sequence Container\Delete Stg_vPRO"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Stg_vPRO" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO"
+          TopLeft="18.9433962264151,113.754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Delete Stg_vPRO"
+          TopLeft="38.9433962264151,21.9056603773585" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="106.830188679245,65.8301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,47.9245283018868"
+              Start="0,0"
+              End="-20,40.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-20,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-20,40.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="183.2,184.8"
+          Size="183.2,228.8"
+          Id="Package\Sequence Container"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[WWP COS]">
+    <DataSourceID>WWP COS</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[WWP Sales]">
+    <DataSourceID>WWP Sales</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Stg_vPRO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO\Fiscsal Date"
+          TopLeft="38.2547169811321,103.160377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO\LOB"
+          TopLeft="112.179245283019,210.971698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO\OLE DB Source"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO\Stg_vPRO"
+          TopLeft="204.971698113208,445.575471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Stg_vPRO\BU"
+          TopLeft="163.122641509434,323.764150943396" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Stg_vPRO.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.7547169811321,53.7358490566038"
+              Start="0,0"
+              End="32.7547169811321,46.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1509433962264" />
+                  <mssgle:LineSegment
+                    End="32.7547169811321,28.1509433962264" />
+                  <mssgle:LineSegment
+                    End="32.7547169811321,46.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output2]"
+          TopLeft="106.141509433962,147.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.9245283018868,63.8867924528302"
+              Start="0,0"
+              End="73.9245283018868,56.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="73.9245283018868,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="73.9245283018868,56.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.2291225678066,36.9245283018868,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output1]"
+          TopLeft="231.009433962264,367.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.8490566037736,77.8867924528302"
+              Start="0,0"
+              End="41.8490566037736,70.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.9433962264151" />
+                  <mssgle:LineSegment
+                    End="41.8490566037736,38.9433962264151" />
+                  <mssgle:LineSegment
+                    End="41.8490566037736,70.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.2668584168632,43.9433962264151,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Stg_vPRO.Paths[Lookup Match Output]"
+          TopLeft="180.066037735849,254.896226415094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.9433962264151,68.8679245283019"
+              Start="0,0"
+              End="50.9433962264151,61.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.4150943396226" />
+                  <mssgle:LineSegment
+                    End="50.9433962264151,34.4150943396226" />
+                  <mssgle:LineSegment
+                    End="50.9433962264151,61.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-22.7196886055425,39.4150943396226,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Stg_vPRO\LOB">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Stg_vPRO\Fiscsal Date">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Stg_vPRO\BU">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Stg_vPRO\Stg_vPRO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Stg_vPRO\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
